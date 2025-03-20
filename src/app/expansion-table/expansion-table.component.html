@@ -1,0 +1,67 @@
+<div class="my-3">
+  <!-- 左上角的收合按鈕 -->
+  <div *ngIf="collapseBtn" class="collapseBtn">
+    <!-- <app-button
+      class="Outline-isBtn"
+      color="primary"
+      [iconName]="isCollapsed ? 'expand_less':'expand_more'"
+      (click)="isCollapsed = !isCollapsed"
+      [title]="isCollapsed ? '全收':'展開' "></app-button> -->
+      <button (click)="isCollapsed = !isCollapsed" class="toggle-btn">
+        {{ isCollapsed ? '全收' : '展開' }}
+      </button>
+  </div>
+  <div *ngFor="let item of paginatedItems" class="mb-1">
+    <mat-expansion-panel [expanded]="isCollapsed" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <table class="table-container" matSort (matSortChange)="sortData($event)">
+            <thead>
+              {{isCollapsed ? '現在是展開':'現在是收合'}}
+              <tr>
+                <th *ngFor="let column of headerColumns;let i = index"
+                    mat-sort-header="{{item[column]}}"
+                    [disabled]="column === 'function'">
+                  {{ fieldName[column] }}
+                </th>
+                <!-- <th>功能</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td *ngFor="let property of headerColumns">{{ item[property] }}</td>
+                <!-- <td>
+                  <app-button class="isBtn" title="{{ item.function }}" (click)="clk($event,item)" [ActionFlag]="searchBtn">
+                  </app-button>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="d-flex">
+        <table class="table-content">
+          <tr>
+            <th *ngFor="let column of detailsColumns">{{ fieldName[column] }}</th>
+          </tr>
+          <tr>
+            <td *ngFor="let property of detailsColumns">{{item[property]}}</td>
+          </tr>
+        </table>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</div>
+<!-- <div class="paginator-container">
+  <mat-paginator  #paginator [length]="CaseDatas.length" [pageSize]="size" [pageSizeOptions]="[5, 10, 15, 20, 25]"
+    aria-label="分頁選擇器" showFirstLastButtons="true">
+  </mat-paginator>
+  <div class="d-inline-block">
+    跳轉至
+    <div class="jump-to-page">
+      <input type="number" min="1" [max]="maxPage" [(ngModel)]="pageInput" (keydown.enter)="jumpToPage()" />
+    </div>
+    頁
+  </div>
+</div> -->

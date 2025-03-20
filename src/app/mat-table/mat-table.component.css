@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+::ng-deep .mat-paginator-page-size-label{
+  margin: 0 35px 0 0 !important;
+}
+::ng-deep .mat-paginator-range-label{
+  margin: 0 50px !important;
+}
+::ng-deep .mat-tooltip-trigger{
+  margin: 0 10px 0 0 !important;
+}
+.test {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}

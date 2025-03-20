@@ -1,0 +1,51 @@
+<button mat-button (click)="allExpanded = !allExpanded">
+  {{ allExpanded ? '收合全部' : '展開全部' }}
+</button>
+
+<div *ngFor="let item of paginatedItems">
+  <mat-expansion-panel [expanded]="allExpanded" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <table class="table-header">
+          <tr>
+            <th *ngFor="let item of headerColumns">{{ item.label }}</th>
+          </tr>
+          <tr>
+            <td>{{ item.applyDate }}</td>
+            <td>{{ item.releaseDate }}</td>
+            <td>{{ item.caseNumber }}</td>
+            <td>{{ item.companyId }}</td>
+            <td>{{ item.orgType }}</td>
+            <td>{{ item.responsiblePerson }}</td>
+            <td><button mat-button color="warn" (click)="clk($event)">詳細</button></td>
+          </tr>
+        </table>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="table-content">
+      <table>
+        <tr>
+          <th *ngFor="let item of detailsColumns">{{ item.label }}</th>
+        </tr>
+        <tr>
+          <td>{{ item.idNumber }}</td>
+          <td>{{ item.videoVerification }}</td>
+          <td>{{ item.cabinetVerification }}</td>
+          <td>{{ item.applicationItem }}</td>
+          <td>{{ item.caseStatus }}</td>
+        </tr>
+      </table>
+    </div>
+  </mat-expansion-panel>
+</div>
+<div class="test">
+  <mat-paginator #paginator [length]="items.length" [pageSize]="size" [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="分頁選擇器" showFirstLastButtons="true">
+  </mat-paginator>
+  <div class="jump-to-page">
+    跳轉至
+    <input type="number" min="1" [max]="maxPage" [(ngModel)]="pageInput" (keydown.enter)="jumpToPage()"/>
+    頁
+  </div>
+</div>
