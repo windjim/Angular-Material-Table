@@ -57,23 +57,6 @@ export class ExpansionTableComponent implements OnInit {
   paginatedItems: any[] = []; // 分頁顯示資料集合
   searchBtn: string = 'A'; // 查詢按鈕樣式
 
-  //表頭欄位文字轉換
-  fieldName: any = {
-    applyTime: '申請日期',
-    approveDate: '完成視訊日期',
-    caseNo: '案件編號',
-    companyName: '公司名稱',
-    releaseDate: '放行日期',
-    uniNo: '公司統編',
-    orgType: '組織型態',
-    name: '負責人',
-    function: '功能',
-    idNo: '身分證字號',
-    videoStatus: '視訊驗證狀態',
-    areaCheck: '臨櫃驗證',
-    applyOption: '申請項目',
-    caseStatus: '案件狀態',
-  };
   maxPage: number = 0; // 最大頁數
   pageInput: number = 1; // 輸入第幾頁
   paginator!: MatPaginator; // 分頁控制器
@@ -90,9 +73,9 @@ export class ExpansionTableComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    console.log('elementData',this.elementData)
-    console.log('jsonFieldName',this.jsonFieldName)
-    console.log('displayColName',this.displayColName)
+    // console.log('elementData',this.elementData)
+    // console.log('jsonFieldName',this.jsonFieldName)
+    // console.log('displayColName',this.displayColName)
     this.setPaginatedItems(0, this.size); //初始化顯示資料筆數
     this.maxPage = Math.ceil(this.CaseDatas.length / this.size); // 計算最大頁數
   }
@@ -108,23 +91,23 @@ export class ExpansionTableComponent implements OnInit {
     this.paginatedItems = [
       {
           "applyTime": "2025/03/11",
-          "caseNo": "CDA2025031100004",
+          "caseNo": "2025031100004",
           "idNo": "A184385581",
-          "applyOption": "台外幣",
+          "applyOption": "FO",
           
       },
       {
           "applyTime": "2025/01/15",
-          "caseNo": "CDA2025011400002",
+          "caseNo": "2025011400002",
           "idNo": "A127944600",
-          "applyOption": "台外幣",
+          "applyOption": "FO",
 
       },
       {
           "applyTime": "2025/01/14",
-          "caseNo": "CDA2025011400001",
+          "caseNo": "2025011400001",
           "idNo": "A163479793",
-          "applyOption": "台幣",
+          "applyOption": "F",
 
       }
   ];

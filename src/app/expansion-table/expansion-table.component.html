@@ -8,7 +8,7 @@
       (click)="isCollapsed = !isCollapsed"
       [title]="isCollapsed ? '全收':'展開' "></app-button> -->
       <button mat-icon-button (click)="isCollapsed = !isCollapsed" class="toggle-btn" style="border: 1px solid grey;">
-        {{ isCollapsed ? '全收' : '展開' }}
+        {{ isCollapsed ? 'Collapse' : 'Expand' }}
       </button>
   </div>
   <div *ngFor="let item of paginatedItems" class="mb-1">
@@ -17,12 +17,12 @@
         <mat-panel-title>
           <table class="table-container" matSort (matSortChange)="sortData($event)">
             <thead>
-              {{isCollapsed ? '現在是展開':'現在是收合'}}
+              {{isCollapsed ? 'Now is the expansion':'Now is the Collapse'}}
               <tr>
                 <th *ngFor="let column of headerColumns;let i = index"
                     mat-sort-header="{{item[column]}}"
                     [disabled]="column === 'function'">
-                  {{ fieldName[column] }}
+                  {{ column }}
                 </th>
                 <!-- <th>功能</th> -->
               </tr>
@@ -43,7 +43,7 @@
       <div class="d-flex">
         <table class="table-content">
           <tr>
-            <th *ngFor="let column of detailsColumns">{{ fieldName[column] }}</th>
+            <th *ngFor="let column of detailsColumns">{{ column }}</th>
           </tr>
           <tr>
             <td *ngFor="let property of detailsColumns">{{item[property]}}</td>

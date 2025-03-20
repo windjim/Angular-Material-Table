@@ -11,6 +11,10 @@ import { ExpansionTableComponent } from './expansion-table/expansion-table.compo
 const routes: Routes = [
   {
     path: '',
+    component: ExpansionTableComponent,
+  },
+  {
+    path: 'table',
     component: TableComponent,
   },
   {
