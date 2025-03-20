@@ -7,7 +7,7 @@
       [iconName]="isCollapsed ? 'expand_less':'expand_more'"
       (click)="isCollapsed = !isCollapsed"
       [title]="isCollapsed ? '全收':'展開' "></app-button> -->
-      <button (click)="isCollapsed = !isCollapsed" class="toggle-btn">
+      <button mat-icon-button (click)="isCollapsed = !isCollapsed" class="toggle-btn" style="border: 1px solid grey;">
         {{ isCollapsed ? '全收' : '展開' }}
       </button>
   </div>
