@@ -1,0 +1,61 @@
+/* 共用宣告樣式Start */
+$title-maintitle: #333333;
+$title-label-title: #4D4D4D;
+$title-block-outline: #767676;
+$white-color: #ffffff;
+$table-border-color: #D6D0C9;
+$prim-bg: #FFEAD7;
+$prim-main: #DA3700;
+$prim-error: #EA5004;
+$green: #51CC06;
+$sec-yellow-color: #fabe00;
+
+//12px
+$s-font-size: 0.75rem;
+//14px
+$m-font-size: 0.875rem;
+//16px
+$mm-font-size:1rem;
+//17.6px
+$ml-font-size: 1.1rem;
+//18px
+$l-font-size: 1.125rem;
+//20px
+$font-size-20: 1.25rem;
+$font-size-28: 28px;
+//24px
+$xl-font-size: 1.5rem;
+//35.2px
+$xxl-font-size: 2.2rem;
+$line-height: 1rem;
+//input block width setting
+$label-width: 170px;
+
+//圓角
+$radius-20:20px;
+$radius-10:10px;
+
+@mixin pad {
+	@media (max-width: 768px) {
+		@content;
+	}
+}
+@mixin mobile {
+	@media (max-width: 375px) {
+		@content;
+	}
+}
+
+/* 共用宣告樣式End */
+
+/* RWD Sample */
+.test {
+	background: black;
+	@include pad {
+		background: blue;
+	}
+	@include mobile {
+		background: red;
+	}
+}
+/* RWD Sample */
