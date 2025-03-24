@@ -1,46 +1,36 @@
 <div class="my-3">
   <!-- 左上角的收合按鈕 -->
   <div *ngIf="collapseBtn" class="collapseBtn">
-    <!-- <app-button
-      class="Outline-isBtn"
-      color="primary"
-      [iconName]="isCollapsed ? 'expand_less':'expand_more'"
-      (click)="isCollapsed = !isCollapsed"
-      [title]="isCollapsed ? '全收':'展開' "></app-button> -->
       <button mat-icon-button (click)="isCollapsed = !isCollapsed" class="toggle-btn" style="border: 1px solid grey;">
         {{ isCollapsed ? 'Collapse' : 'Expand' }}
       </button>
   </div>
   <div *ngFor="let item of paginatedItems" class="mb-1">
-    <mat-expansion-panel [expanded]="isCollapsed" hideToggle>
-      <mat-expansion-panel-header>
+    <mat-expansion-panel [disabled]="true" [expanded]="isCollapsed" hideToggle>
+      <mat-expansion-panel-header >
         <mat-panel-title>
-          <table class="table-container" matSort (matSortChange)="sortData($event)">
-            <thead>
-              {{isCollapsed ? 'Now is the expansion':'Now is the Collapse'}}
-              <tr>
-                <th *ngFor="let column of headerColumns;let i = index"
-                    mat-sort-header="{{item[column]}}"
-                    [disabled]="column === 'function'">
+          
+            <table mat-table  [dataSource]="[item]" class="mat-table">
+              <ng-container *ngFor="let column of headerColumns" [matColumnDef]="column">
+                <th mat-header-cell *matHeaderCellDef  (click)="onSort(column)" >
                   {{ column }}
+                  <span *ngIf="sortColumn === column">
+                    {{ sortDirection === 'asc' ? '⭡' : '⭣' }}
+                  </span>
                 </th>
-                <!-- <th>功能</th> -->
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td *ngFor="let property of headerColumns">{{ item[property] }}</td>
-                <!-- <td>
-                  <app-button class="isBtn" title="{{ item.function }}" (click)="clk($event,item)" [ActionFlag]="searchBtn">
-                  </app-button>
-                </td> -->
-              </tr>
-            </tbody>
-          </table>
+                <td mat-cell *matCellDef="let element" class="mat-cell">
+                  {{element|jsonKey:column}}
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="headerColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: headerColumns;"></tr>
+            </table>
+      
+        
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <div class="d-flex">
+      
         <table class="table-content">
           <tr>
             <th *ngFor="let column of detailsColumns">{{ column }}</th>
@@ -49,12 +39,12 @@
             <td *ngFor="let property of detailsColumns">{{item[property]}}</td>
           </tr>
         </table>
-      </div>
+      
     </mat-expansion-panel>
   </div>
 </div>
-<!-- <div class="paginator-container">
-  <mat-paginator  #paginator [length]="CaseDatas.length" [pageSize]="size" [pageSizeOptions]="[5, 10, 15, 20, 25]"
+<div class="paginator-container">
+  <mat-paginator  #paginator [length]="elementData.length" [pageSize]="size" [pageSizeOptions]="[5, 10, 15, 20, 25]"
     aria-label="分頁選擇器" showFirstLastButtons="true">
   </mat-paginator>
   <div class="d-inline-block">
@@ -64,4 +54,4 @@
     </div>
     頁
   </div>
-</div> -->
+</div>
